@@ -22,6 +22,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         user.setPassword(customPasswordEncoder.getPasswordEncoder().encode("1234"));
         user.setId(1L);
         return user;
-        
     }
 }
