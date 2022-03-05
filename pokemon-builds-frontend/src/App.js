@@ -4,7 +4,7 @@ import MainSection from './Components/HomePage/MainSection/MainSection.jsx';
 import { useEffect, useState } from 'react';
 
 function App() {
- // make a fetch request to pokeapi
+
  const [pokemon, setPokemon] = useState([]);
 
   useEffect(() => { 
@@ -13,6 +13,23 @@ function App() {
     .then(data => {
       console.log(data.name);
       setPokemon(data.name);
+    });
+
+    fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "username": "andres",
+        "password": "1234"
+      })
+    })
+    .then((res) => Promise.all([res.json(), res.headers]))
+    .then(([body, headers]) => {
+      const authValue = headers.get('authorization');
+      console.log(authValue);
+      console.log(body);
     });
   })
 
