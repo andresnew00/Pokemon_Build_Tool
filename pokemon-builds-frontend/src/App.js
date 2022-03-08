@@ -20,24 +20,6 @@ function App() {
         setPokemon(data.name);
       });
 
-    // if there is a JWT value already in local storage don't fetch a new one
-    if (!jwt) {
-      fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "andres",
-          password: "1234",
-        }),
-      })
-        .then((res) => Promise.all([res.json(), res.headers]))
-        .then(([body, headers]) => {
-          setJwt(headers.get("authorization"));
-          localStorage.setItem("jwt", jwt);
-        });
-    }
   }, []);
 
   return (
