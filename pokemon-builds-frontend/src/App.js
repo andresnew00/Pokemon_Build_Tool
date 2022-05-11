@@ -4,9 +4,11 @@ import MainSection from "./Components/HomePage/MainSection/MainSection.jsx";
 import { useEffect, useState } from "react";
 import { useLocalState } from "./util/useLocalStorage";
 import { Routes, Route, Switch } from "react-router-dom";
+
 import LoginSection from "./Components/Login/LoginSection.js";
 import BuildTool from "./Components/BuildTool/BuildTool.js";
 import PrivateRoute from "./PrivateRoute/PrivateRoute.js";
+import BuildView from "./Components/BuildView/BuildView.js";
 
 function App() {
   const [jwt, setJwt] = useLocalState("", "jwt");
@@ -19,7 +21,6 @@ function App() {
         console.log(data.name);
         setPokemon(data.name);
       });
-
   }, []);
 
   return (
@@ -35,6 +36,15 @@ function App() {
           </PrivateRoute>
         }
       />
+
+      <Route
+        path="/builds/:id"
+        element={
+          <PrivateRoute>
+            <BuildView />
+          </PrivateRoute>
+        }
+      ></Route>
       {/* NOT FOUND PAGE */}
       <Route path="*" element={<div>Not Found</div>} />
     </Routes>

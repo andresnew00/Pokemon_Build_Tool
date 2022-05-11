@@ -6,6 +6,7 @@ import tech.designdesk.PokemonBuildTool.domain.Build;
 import tech.designdesk.PokemonBuildTool.domain.User;
 import tech.designdesk.PokemonBuildTool.repository.BuildRepository;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -23,5 +24,9 @@ public class BuildService {
 
     public Set<Build> findByUser(User user) {
         return buildRepo.findByUser(user);
+    }
+
+    public Optional<Build> findById(Long buildId) {
+        return buildRepo.findById(buildId);
     }
 }
